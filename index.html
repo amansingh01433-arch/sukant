@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sorry Neha ❤️ | By Sukant</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;min-height:100vh;
+  display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(circle,#39102f,#100719 65%,#03030a);
+  color:white;font-family:Georgia,serif;
+  text-align:center;overflow-x:hidden;
+}
+.card{
+  width:min(92%,520px);padding:30px 20px;
+  border:1px solid #ff76d7;border-radius:25px;
+  background:#ffffff09;backdrop-filter:blur(10px);
+  box-shadow:0 0 40px #ff269b33;z-index:2;
+}
+h1{color:#ff8bdd;text-shadow:0 0 20px #ff39bd}
+p{line-height:1.9;color:#f8e5f5}
+.scene{
+  height:210px;display:grid;place-items:center;
+  perspective:800px;margin:15px 0;
+}
+.heart{
+  width:100px;height:100px;position:relative;
+  background:linear-gradient(135deg,#ffb2e9,#ff246c,#98003d);
+  transform:rotate(-45deg);
+  border-radius:12px;
+  box-shadow:inset 7px 7px 14px #ffffff77,
+  0 0 35px #ff176b;
+  animation:beat 1.2s infinite,spin 5s ease-in-out infinite;
+}
+.heart:before,.heart:after{
+  content:"";position:absolute;width:100px;height:100px;
+  border-radius:50%;background:inherit;
+}
+.heart:before{top:-50px;left:0}
+.heart:after{top:0;left:50px}
+@keyframes beat{
+  0%,100%{scale:1}
+  50%{scale:1.16}
+}
+@keyframes spin{
+  0%,100%{rotate:-5deg}
+  50%{rotate:5deg}
+}
+button{
+  background:linear-gradient(135deg,#ff65c5,#e92767);
+  color:white;border:1px solid #ffb4e6;
+  border-radius:30px;padding:13px 21px;
+  font-size:15px;margin:9px;cursor:pointer;
+  box-shadow:0 0 16px #ff4baf44;
+}
+button:hover{transform:scale(1.05)}
+#msg{display:none}
+.emoji{
+  position:fixed;bottom:-40px;pointer-events:none;
+  animation:rise 5s linear forwards;z-index:1;
+}
+@keyframes rise{
+  to{transform:translateY(-110vh) rotate(360deg);opacity:0}
+}
+.small{font-size:13px;color:#d2b3d1}
+</style>
+</head>
+
+<body>
+<div class="card">
+  <p>💌 EK CHHOTI SI BAAT 💌</p>
+  <h1>Sorry Neha 🥺💗</h1>
+
+  <div class="scene">
+    <div class="heart"></div>
+  </div>
+
+  <p>
+    Neha, agar meri kisi baat se tumhe bura laga ho,
+    toh mujhe maaf kar dena. 🥹🌹
+  </p>
+  <p>
+    Tumhari khushi mere liye khaas hai.
+    Hamesha muskurati rehna. 💕✨
+  </p>
+
+  <button onclick="showMessage()">Open My Heart 💖</button>
+  <button onclick="toggleMusic()" id="musicBtn">🎵 Play Music</button>
+
+  <div id="msg">
+    <h2 style="color:#ff8bdd">Ek baat suno, Neha 💗</h2>
+    <p>
+      Narazgi ho toh baat karke suljha lenge.
+      Tumhari feelings mere liye important hain.
+      I am sorry, Neha. 🫶🌸
+    </p>
+    <h2>— Sukant ❤️</h2>
+  </div>
+
+  <p class="small">Made with ❤️ by Sukant</p>
+</div>
+
+<audio id="music" loop preload="none">
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+function showMessage(){
+  document.getElementById("msg").style.display="block";
+  for(let i=0;i<20;i++)setTimeout(makeEmoji,i*100);
+}
+
+let playing=false;
+async function toggleMusic(){
+  const music=document.getElementById("music");
+  const btn=document.getElementById("musicBtn");
+  if(!playing){
+    try{
+      await music.play();
+      playing=true;
+      btn.textContent="⏸ Stop Music";
+    }catch(e){
+      alert("Music ke liye internet connection check karo. 🎵");
+    }
+  }else{
+    music.pause();
+    playing=false;
+    btn.textContent="🎵 Play Music";
+  }
+}
+
+function makeEmoji(){
+  const el=document.createElement("span");
+  el.className="emoji";
+  el.textContent=["💗","💕","❤️","🥹","🌸","✨"][Math.floor(Math.random()*6)];
+  el.style.left=Math.random()*100+"vw";
+  el.style.fontSize=(20+Math.random()*20)+"px";
+  el.style.animationDuration=(3+Math.random()*3)+"s";
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(),6500);
+}
+setInterval(makeEmoji,800);
+</script>
+</body>
+</html>
